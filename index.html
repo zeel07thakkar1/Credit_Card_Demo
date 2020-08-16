@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" /> 
+	<title>Credit Card Demo</title>
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+
+	<link rel="stylesheet" href="css/font-awesome.min.css">
+
+	<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+
+<div class="container">
+	<h1 class="text-center mt-5 text-info">Credit Card Demo</h1>
+	<div class="row justify-content-center my-5">
+
+		<div class="col-lg-6 credit_card_div">
+
+			<form action="" method="get" accept-charset="utf-8" id="credit_card_form">
+				<div class="form-group">
+					<label for="cc-number">Card Number</label>
+					<div class="input-group form-group mb-3">
+						
+						<input type="tel" class="form-control" id="cc-number" placeholder="---- ---- ---- ----">
+						<div class="input-group-prepend">
+							<span class="input-group-text card_img">
+								<img src="" alt="" class="card_image">
+							</span>
+						</div>
+					</div>
+				</div>
+				<div class="row form-group">
+					<div class="col-lg-6 col-md-6 col-sm-6 col-6">
+						<label for="cc-date">Expiry Date</label>
+						<input type="text" placeholder="MM / YY" class="form-control" id="cc-date">
+					</div>
+					<div class="col-lg-6 col-md-6 col-sm-6 col-6">
+						<label for="cc-cvv">CVC / CVV</label>
+						<input type="text" placeholder="---" class="form-control" id="cc-cvv" maxlength="3" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" />
+					</div>
+					
+				</div>
+				<div class="form-group">
+					<label for="cc-name">Card Holder Name</label>
+					<input type="text" placeholder="Card Holder Name" class="form-control">
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript" src="js/jquery-3.5.1.min.js"></script>
+<script type="text/javascript" src="js/cleave.min.js"></script>
+
+
+ <!-- Template Main JS File -->
+  <script type="text/javascript" src="js/script.js"></script>
+
+<script type="text/javascript">
+
+		var cleave = new Cleave('#cc-number', {
+	    creditCard: true,
+	    delimiter:'-',
+	    onCreditCardTypeChanged: function (type) {
+	       
+
+	       if(type === "visa")
+	       {
+	       		$('.card_img .card_image').attr('src', 'images/visa.png');
+	       }
+
+	       else if(type === "jcb")
+	       {
+	       		$('.card_img .card_image').attr('src', 'images/jcb.jpg');
+	       }
+	       else if(type === "master")
+	       {
+	       		$('.card_img .card_image').attr('src', 'images/master.png');
+	       }
+	       else if(type === "discover")
+	       {
+	       		$('.card_img .card_image').attr('src', 'images/discover.png');
+	       }
+	        else if(type === "diners")
+	       {
+	       		$('.card_img .card_image').attr('src', 'images/diners1.png');
+	       }
+	       else if(type === "amex")
+	       {
+	       		$('.card_img .card_image').attr('src', 'images/amex.png');
+	       }
+	       else
+	       {
+	       		$('.card_img .card_image').removeAttr('src');
+	       }
+
+
+	    }
+	});
+
+	var cleave = new Cleave('#cc-date', {
+		date: true,
+		datePattern: ['m', 'y']
+		});
+
+
+	
+</script>
+  
+</body>
+</html>
